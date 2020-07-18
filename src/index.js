@@ -3,7 +3,7 @@ import prettySize from 'prettysize';
 
 const { npm_package_name: name, npm_package_version: version } = process.env;
 
-export default ({ logger = console.log, logWith, pretty = true, include, exclude } = {}) => async (ctx, next) => {
+export default ({ logger = console.log, logWith, json = true, pretty = true, include, exclude } = {}) => async (ctx, next) => {
     const toLog = (!include || include(ctx)) && (!exclude || !exclude(ctx));
     if (!toLog)
         return next;
@@ -23,11 +23,10 @@ export default ({ logger = console.log, logWith, pretty = true, include, exclude
         const bytes = pretty ? prettySize(ctx.response.length, { nospace: true, one: true }) : bytes;
         const status = ctx.status;
 
-        const info = { time, timestamp, name, version, ip, method, url, status, bytes, duration };
-        if (logWith) {
-            const customInfo = logWith(ctx);
-            Object.assign(info, customInfo);
-        }
+        const customInfo = logWith ? logWith(ctx) : {};
+
+        let info = { time, timestamp, name, version, ip, method, url, status, bytes, duration, ...customInfo };
+        info = json ? JSON.stringify(info) : info;
 
         logger(info);
     }
