@@ -17,5 +17,9 @@
         "jasmine": "^3.5.0",
         "koa": "^2.12.0",
         "supertest": "^4.0.2"
+    },
+    "dependencies": {
+        "pretty-ms": "^7.0.0",
+        "prettysize": "^2.0.0"
     }
 }
