@@ -1,6 +1,6 @@
 {
     "name": "koa-better-log",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Koa middleware logging requests.",
     "license": "MIT",
     "repository": "https://github.com/damianobarbati/koa-better-log.git",
