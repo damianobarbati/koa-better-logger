@@ -1,5 +1,4 @@
-import pkg from '../package.json';
-const { name, version } = pkg;
+const { npm_package_name: name, npm_package_version: version } = process.env;
 
 export default ({ logger = console.log, include, exclude } = {}) => async (ctx, next) => {
     const toLog = (!include || include(ctx)) && (!exclude || !exclude(ctx));
