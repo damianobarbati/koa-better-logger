@@ -6,7 +6,7 @@ const { npm_package_name: name, npm_package_version: version } = process.env;
 export default ({ logger = console.log, logWith, json = true, pretty = true, include, exclude } = {}) => async (ctx, next) => {
     const toLog = (!include || include(ctx)) && (!exclude || !exclude(ctx));
     if (!toLog)
-        return next;
+        return next();
 
     const start = Date.now();
 
