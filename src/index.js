@@ -16,7 +16,7 @@ export default ({ logger = console.log, logWith, json = true, pretty = true, inc
     finally {
         const time = new Date().toISOString();
         const timestamp = new Date().getTime();
-        const ip = ctx.ips.length > 0 ? ctx.ips[ctx.ips.length - 1] : ctx.ip;
+        const ip = ctx.ips.length > 0 ? ctx.ips[0] : ctx.ip;
         const method = ctx.method;
         const url = ctx.originalUrl;
         const duration = pretty ? prettyDuration(Date.now() - start) : Date.now() - start;
